@@ -23,7 +23,7 @@ public class Client {
     public static void main(String[] args) throws IOException {
 
         Socket clientSocket = new Socket("localhost", 9090);
-
+        System.out.println("Client Online");
         while (true) {
 
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
@@ -35,8 +35,11 @@ public class Client {
 
             String modifiedSentence = inFromServer.readLine();
             System.out.println("FROM SERVER : " + modifiedSentence);
-            fileName = "D:\\test\\client" + fileName;
-
+            
+            String str[] = fileName.split("\\\\");
+            fileName = str[str.length-1];
+            
+            fileName = "D:\\test\\client\\" + fileName;
             File file = new File(fileName);
 
             try {
